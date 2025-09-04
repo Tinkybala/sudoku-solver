@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1756807962.03232 "c:/Users/micha/OneDrive/Documents/Exchange/Operations Research/Homework 1/test.tex" "test.pdf" "test" 1756807962.94547 2
+["pdflatex"] 1756984751.81688 "c:/Users/micha/OneDrive/Documents/Exchange/Operations Research/Homework 1/test.tex" "test.pdf" "test" 1756984752.70406 0
   "C:/Users/micha/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1756798912 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/micha/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1756796339 13257342 9ace11f4ef56b6086599f4a62c8186a8 ""
   "C:/Users/micha/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbx12.tfm" 1136765053 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -108,9 +108,9 @@
   "C:/Users/micha/AppData/Local/Programs/MiKTeX/tex/latex/pgf/utilities/pgfkeys.sty" 1756451144 274 5ae372b7df79135d240456a1c6f2cf9a ""
   "C:/Users/micha/AppData/Local/Programs/MiKTeX/tex/latex/pgf/utilities/pgfrcs.sty" 1756451144 325 f9f16d12354225b7dd52a3321f085955 ""
   "C:/Users/micha/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "c:/Users/micha/OneDrive/Documents/Exchange/Operations Research/Homework 1/test.tex" 1756806618 4332 f38cafb3dc19b32a3848a014629f17a1 ""
-  "test.aux" 1756807962 130 9e2cdc42f9029868c4d14ef7dbcae3a9 "pdflatex"
-  "test.tex" 1756806618 4332 f38cafb3dc19b32a3848a014629f17a1 ""
+  "c:/Users/micha/OneDrive/Documents/Exchange/Operations Research/Homework 1/test.tex" 1756984751 4451 15874a0c8cb493ce1e44e856c8533953 ""
+  "test.aux" 1756984752 130 9e2cdc42f9029868c4d14ef7dbcae3a9 "pdflatex"
+  "test.tex" 1756984751 4451 15874a0c8cb493ce1e44e856c8533953 ""
   (generated)
   "test.aux"
   "test.log"

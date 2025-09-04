@@ -14,7 +14,7 @@
     \begin{enumerate}[label=\alph*)]
         \item $V=\{X_1,X_2...,X_n\}$, $D=\{D_1, D_2, ..., D_n\}$ where $D_1=D_2=...=D_n=\{13.00, 14.00, 15.00\}$ and
         $C=\{T_1<T_3, T_3<T_4, T_3=T_5, T_2\neq T_1, T_2 \neq T_4, T_4 \neq 14.00\}$
-        \item Constraint Graph (unary constraint $T_4 \neq 14.00$ is reflected in omission of 14.00 in D_4)
+        \item Constraint Graph (unary constraint $T_4 \neq 14.00$ is reflected in omission of 14.00 in $D_4$)
         
         \begin{tikzpicture}[node distance=2cm, every node/.style={circle, draw}]
             \node (A) {$T_1$};
@@ -59,27 +59,29 @@
         
         \item A solution to the CSP is $T_1=13, T_2=14, T_3=14, T_4=15, T_5=14$
         \item It is not true that for very element x in the domain of a varaible v after propogation that there exists a solution where $v=x$.
-        The propogation algorithm ensures that every pair of nodes are arc-consistent both ways (local consistency if nodes are also consistent). However, local consistency does not guarantee global consistency
-        An example of such a graph is the one shown in the lecture:
+        The propogation algorithm ensures that every pair of nodes are arc-consistent both ways (local consistency if nodes are also consistent). However, local consistency does not guarantee global consistency.
+        For example, a variable might have $D=\{a,b\}$ but setting the variable to $a$ could constraint another variable such that the variable no longer has any possible assignments.
+        An example of this:
         
         \begin{tikzpicture}[node distance=2cm, every node/.style={circle, draw}]
             \node (A) [circle, draw] {A};
             \node (B) [circle, draw, right of=A] {B};
-            \node (C) [circle, draw, below of=B] {C};
+            \node (C) [circle, draw, right of=B] {C};
 
             % Connect the nodes in a triangle
             \draw (A) -- node[midway, above, draw=none] {$\neq$} (B);
-            \draw (B) -- node[midway, right, draw=none] {$\neq$} (C);
-            \draw (C) -- node[midway, left, draw=none] {$\neq$} (A);
+            \draw (B) -- node[midway, above, draw=none] {$\neq$} (C);
+            \draw (C) edge [out=90,in=90] node[above, draw=none] {$\neq$} (A);
 
             % Add labels for the domain
-            \draw (A) node [above, yshift=0.5cm,draw=none] {$\{0, 1\}$};
-            \draw (B) node [above, yshift=0.5cm,draw=none] {$\{0, 1\}$};
+            \draw (A) node [below, yshift=-0.5cm,draw=none] {$\{0, 1\}$};
+            \draw (B) node [below, yshift=-0.5cm,draw=none] {$\{0, 1\}$};
             \draw (C) node [below, yshift=-0.5cm,draw=none] {$\{0, 1\}$};
 
         \end{tikzpicture}
 
-        All the nodes are consistent and also consistent with respect to their neighbours but there is not solution, showing by conuterexample that there could still be elements left in the domain of a variable that are not in any solution.
+        After peforming AC3 constraint propogation, the constraint graph remains the same. The domains on the variables contain values 1 and 2 but
+        there is no solution to the problem at all.
     \end{enumerate}
 \end{document}
 
