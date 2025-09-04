@@ -3,6 +3,7 @@ import math
 from collections import deque, defaultdict
 from typing import List, Tuple, DefaultDict, Deque
 import time
+import copy
 
 class AC3():
     def __init__(self, domain: dict, constraints: List[Tuple[str, str]]):
@@ -174,49 +175,52 @@ class Solver():
 
     def solve(self):
         """
-        Calls _get_graph to update constraint and domain then,
+        Calls _get_graph to get initial constraints and domains then,
         performs AC3 algorithm for search space reduction then
         backtracking search to find and print the solution.
         """
 
         self._get_graph()
-        reduced_domain = AC3(self.domain, self.constraints)()
-        solution = {}
-        remaining= []
-
-        # Fix the variables with single valued domains
-        for v, d in reduced_domain.items():
-            if len(d) == 1:
-                solution[v] = d[0]
-            else:
-                remaining.append(v)
-        
-        remaining.sort(key=lambda var: len(reduced_domain[var]))
 
         # Search over the remaining variables
-        def search(i):
-            # solution found
-            if i == len(remaining):
-                return True
+        def search(domain):
+            # propogate constraints
+            reduced_domain = AC3(domain, self.constraints)()
+            solution = {}
+            remaining= []
+
+            # Fix the variables with single valued domains
+            for v, d in reduced_domain.items():
+                if len(d) == 1:
+                    solution[v] = d[0]
+                else:
+                    remaining.append(v)
             
-            var = remaining[i]
-            d = reduced_domain[var]
+            # solution found
+            if len(remaining) == 0:
+                return solution
+            
+            remaining.sort(key=lambda var: len(reduced_domain[var]))
 
-            for value in d:
+            
+            var = remaining[0]
+
+            for value in reduced_domain[var]:
                 if self.no_conflict(var, value, solution):
-                    solution[var] = value
-                    reduced_domain = AC3(reduced_domain, self.constraints)()
-                    if search(i+1):
-                        return True
-                    del solution[var]
-                    
-            return False
+                    domain_copy = copy.deepcopy(reduced_domain)
+                    domain_copy[var] = [value]
 
-        search(0)
+                    result = search(domain_copy)
+                    if result is not None:
+                        return result
+                        
+                    
+            return None
+
+        solution = search(self.domain)
         
         # Print solution
         size = math.isqrt(len(self.domain))
-
         for i in range(1,size+1):
             row = []
             for j in range(1,size+1):
@@ -224,12 +228,9 @@ class Solver():
                 # get the value from the dict, 0 if not present
                 row.append(str(solution[key]))
             print("".join(row))
-        
+
 
 if __name__ == "__main__":
-    start_time = time.time()
     solver = Solver()
     solver.solve()
 
-    end_time = time.time()
-    print(f"Elapsed time: {end_time - start_time:.4f} seconds")
